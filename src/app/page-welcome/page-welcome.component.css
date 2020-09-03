@@ -1,0 +1,11 @@
+#page-container_page-welcome{
+	width:100%;
+	float:left;
+}
+#page-welcome_main-card{
+	text-align:center;
+	width:400px;
+	margin-top:40px;
+	left:50%;
+	margin-left:-200px;
+}

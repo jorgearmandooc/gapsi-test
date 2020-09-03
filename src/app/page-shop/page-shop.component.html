@@ -1,0 +1,43 @@
+
+<!--mat-grid-list cols="5" rowHeight="550">
+	<mat-grid-tile><app-ui-product></app-ui-product></mat-grid-tile>
+	<mat-grid-tile><app-ui-product></app-ui-product></mat-grid-tile>
+	<mat-grid-tile><app-ui-product></app-ui-product></mat-grid-tile>
+	<mat-grid-tile><app-ui-product></app-ui-product></mat-grid-tile>
+	<mat-grid-tile><app-ui-product></app-ui-product></mat-grid-tile>
+</mat-grid-list-->
+
+<!--app-ui-product></app-ui-product-->
+
+<cdk-virtual-scroll-viewport 
+	style="height:calc(100% - 64px);" 
+	itemSize="{{itemSize}}" 
+	class="example-viewport" 
+	(scrolledIndexChange)="onScroll($event)"
+>
+
+	<div
+	cdkDropList
+	#todoList="cdkDropList"
+	[cdkDropListData]="products"
+	[cdkDropListConnectedTo]="[doneList]"
+	(cdkDropListDropped)="drop($event)"
+	>
+		<app-ui-product *cdkVirtualFor="let product of getProducts()" cdkDrag [product]="product"></app-ui-product>
+	</div>
+</cdk-virtual-scroll-viewport>
+
+
+<button 
+	mat-fab 
+	color="primary" 
+	id="page-shop_button-shopping-cart"
+    cdkDropList
+    #doneList="cdkDropList"
+    [cdkDropListData]="shoppingCart"
+    [cdkDropListConnectedTo]="[todoList]"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)"
+>
+	<mat-icon matBadge="{{shoppingCart.length}}" matBadgeColor="warn">shopping_cart</mat-icon>
+</button>
